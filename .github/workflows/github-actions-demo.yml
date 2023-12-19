@@ -10,13 +10,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  listshit: 
-    name: list cool stuff
+  Build:
     runs-on: ubuntu-latest
     steps:
-      - name: list all files
+      - run: |
+          echo "🎉 The job was triggered by event: ${{ github.event_name }}"
+          echo "🔎 Current branch is ${{ github.ref }} and your repository is ."
+
+      - uses: actions/checkout@v3.3.0
+
+      - name: list stuff in the repo
         run: |
-          echo "The repo has the following files"
-          ls -la
-      
+          echo "The repository ${{ github.repository }} contains the following files:"
+          tree
       
