@@ -1,0 +1,22 @@
+name: GitHub Actions Demo
+on: 
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - .github/**
+  schedule:
+    - cron: '15 6 * * SUN'
+  workflow_dispatch:
+
+jobs:
+  listshit: 
+    name: list cool stuff
+    runs-on: ubuntu-latest
+    steps:
+      - name: list all files
+        run: |
+          echo "The repo has the following files"
+          ls -la
+      
+      
