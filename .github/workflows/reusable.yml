@@ -9,13 +9,15 @@ on:
         required: true
         default: Alex
     outputs:
-      current-time:
+      time:
         description: 'The time when greeting.'
         value: ${{ jobs.reusable-job.outputs.time }}
 
 jobs:
   reusable-job:
     runs-on: ubuntu-latest
+    outputs:
+      time: ${{ steps.time.outputs.time }}
     steps: 
       - name: Say hello
         run: echo "Tjena ${{ inputs.who-to-greet }} "
@@ -23,8 +25,6 @@ jobs:
       - name: Tid
         id: time
         run: echo "time=$(date)" >> $GITHUB_OUTPUT
-    outputs:
-      current-time: ${{ steps.time.outputs.time }} 
 
         
     
