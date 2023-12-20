@@ -1,0 +1,14 @@
+name: Reuse other workflow
+on: 
+  workflow_dispatch:
+
+jobs:
+  call-reusable:
+    uses: ./.github/workflows/reusable.yaml
+    with:
+      who-to-greet: 'Alex'
+  use-output:
+    runs-on: ubuntu-latest
+    needs: [call-reusable]
+    steps:
+      - run: echo "Time was ${{ needs.call-reusable.outputs.current-time }}"
